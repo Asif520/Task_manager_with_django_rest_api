@@ -1,5 +1,5 @@
-{% extends 'main.html' %}
-
+{% include "navbar.html" %}
+{% load static %}
 {% block content %}
 
   <main class="create-room layout">
@@ -22,7 +22,7 @@
             {% endfor %}
 
             <div class="form__action">
-              <a class="btn btn--dark" href="{% url 'home' %}">Cancel</a>
+              <a class="btn btn--dark" href="{% url 'home' %}"><input class="btn btn--main" type="button" value="Cancel" /></a>
               <button class="btn btn--main" type="submit">Submit</button>
             </div>
           </form>

@@ -1,0 +1,16 @@
+{% load static %}
+
+
+<div class="layout__body">
+    <form class="form" action="" method="POST">
+        {% csrf_token %}
+        <div class="form__group">
+            <p>Are you sure you want to delete "{{task.title}}"?</p>
+        </div>
+        <div class="for__group">
+            <a class="btn btn--dark" href="{% url 'home' %}"><input class="btn btn--main" type="text" value="Cancel" /></a>
+            <input class="btn btn--main" type="buttton" value="Confirm" />
+        </div>
+    </form>
+</div>
+

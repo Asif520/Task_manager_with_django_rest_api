@@ -53,15 +53,25 @@ def registerUser(request):
     context = {'form':form}
     return render(request,'tasks/login_register.html',context)
 
+def home(request):
+    task = Task.objects.all()
+    context = {'task':task}
+    return render(request, 'main.html' ,context)
 
 def taskList(request):
     q= request.GET.get('q') if request.GET.get('q') !=None else ''
 
-    tasks = Task.objects.filter(Q(title__icontains=q))
+    task = Task.objects.filter(Q(title__icontains=q))
 
-    task = Task.objects.all()
     context = {'task':task}
     return render(request, 'main.html' ,context)
+
+@login_required(login_url='login')
+def taskDetails(request,pk):
+    task = Task.objects.get(id=pk)
+        
+    context = {'task':task}
+    return render(request, 'tasks/tasks_details.html',context)
 
 @login_required(login_url='login')
 def createTask(request):
@@ -70,19 +80,52 @@ def createTask(request):
     if request.method == 'POST':
         form = TaskForm(request.POST)
 
-        if form.is_valid():
-        # Task.objects.create(
-            task = form.save(commit=False)
-            task.user = request.user,
-            task.title = request.POST.get('title'),
-            task.description = request.POST.get('description'),
-            task.due_date = request.POST.get('due_date'),
-            task.priority = request.POST.get('priority'),
-            is_complete_value = request.POST.get('is_complete')
-            task.is_complete = (is_complete_value == 'on')
-            task.save()
+        Task.objects.create(
+             user = request.user,
+             title = request.POST.get('title'),
+             description = request.POST.get('description'),
+             due_date = request.POST.get('due_date'),
+             priority = request.POST.get('priority'),
+             is_complete = request.POST.get('is_complete'=='on')
+        )
+        return redirect('home')
             
-            return redirect('main.html')
-
     context = {'form': form}
     return render(request, 'tasks/task_form.html', context)
+
+@login_required(login_url='login')
+def updaeTask(request,pk):
+    task = Task.objects.get(id=pk)
+    form = TaskForm(instance=task)
+    if request.user != task.user:
+         return HttpResponse('You are not allowed to Update!!')
+
+    if request.method == 'POST':
+        form = TaskForm(instance=task)
+        
+        Task.objects.update(
+            title = request.POST.get('title'),
+            description = request.POST.get('description'),
+            due_date = request.POST.get('due_date'),
+            priority = request.POST.get('priority'),
+            is_complete = request.POST.get('is_complete'=='on')
+        )
+
+        return redirect('home')
+    
+    context={'form': form,'task':task}
+    return render(request,'tasks/task_form.html',context)
+
+@login_required(login_url='login')
+def deleteTask(request,pk):
+    task = Task.objects.get(id=pk)
+    if request.user != task.user:
+         return HttpResponse('You are not allowed to Delete!!')
+     
+    if request.method == 'POST':
+        task.delete()
+        return redirect('home')
+    return render(request, 'tasks/delete.html',{'task': task})
+
+
+

@@ -3,10 +3,27 @@
     <div>
         <a href="{% url 'createTask' %}">Create Task</a>
     </div>
+    
+    <div>
+        <h2>Tasks</h2>
+    </div>
+
     <div>
         <ul>
             {% for tasks in task %}
-            <li>{{tasks.title}}</li>
+            <li> 
+                <div class="roomListRoom">
+                    <div class="roomListRoom__header">
+                      <div class="roomListRoom__actions">
+                        <span>created {{tasks.created_at|timesince}} ago</span>
+                      </div>
+                    </div>
+                </div>
+
+                <div class="roomListRoom__content">
+                  <a href="{% url 'taskDetails' tasks.id %}">{{tasks.title}}</a>
+                </div>                
+            </li>
             {% endfor %}
         </ul>
     </div>

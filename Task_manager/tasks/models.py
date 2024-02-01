@@ -21,7 +21,13 @@ class Task(models.Model):
     is_complete = models.BooleanField(default=False,blank =True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True, null=True, blank=True)
-    photo = models.ImageField(null=True, upload_to='/')
+    photo = models.ImageField(null=True, upload_to='images')
+
+    def __str__(self):
+        return self.name
+    
+    class Meta:
+        ordering = ['-updated_at','-created_at']
 
 
 # Create your models here.

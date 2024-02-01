@@ -1,15 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
+{% include "navbar.html" %}
+{% load static %}
+    {% block content %}
     <div>
-        <h1>title 1</h1>
+        <h1>{{task.title}}</h1>
 
-        <p>description</p>
+        <p>{{task.description}}</p>
     </div>
     <div>
         <img src="" alt="">
@@ -20,18 +15,16 @@
         <a href="#">Delete Photos</a>
     </div>
     <div>
-        <h5>created at 01/01/2024:5 p.m.</h5>
-        <h3>Due Date : 15/02/2024 10 p.m.</h3>
+        <h5>created at {{task.created_at}}</h5>
+        <h3>Due Date : {{task.due_date}}.</h3>
     </div>
     <div>
-        <p>Priority</p>
-        <p>is completed?</p>
+        <p>Priority : {{task.priority}}</p>
+        <p>is completed = {{task.is_complete}}</p>
     </div>
 
     <div>
-        <a href="#">Update Task</a>
-        <a href="#">Delete Task</a>
+        <a href="{% url 'update_task' task.id %}">Update Task</a>
+        <a href="{% url 'deleteTask' task.id %}">Delete Task</a>
     </div>
-   
-</body>
-</html>
+    {% endblock content %}
