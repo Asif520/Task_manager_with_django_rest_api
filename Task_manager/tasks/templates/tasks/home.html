@@ -1,0 +1,13 @@
+{% load static %}
+<section>
+    <div>
+        <a href="{% url 'createTask' %}">Create Task</a>
+    </div>
+    <div>
+        <ul>
+            {% for tasks in task %}
+            <li>{{tasks.title}}</li>
+            {% endfor %}
+        </ul>
+    </div>
+</section>
