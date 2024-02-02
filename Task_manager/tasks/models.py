@@ -17,14 +17,12 @@ class Task(models.Model):
     title = models.CharField(max_length=255)
     description = models.TextField()
     due_date = models.DateField()
-    priority = models.CharField(max_length=20, choices=[('low','Low'), ('medium','Medium'), ('high','High')])
-    is_complete = models.BooleanField(default=False,blank =True)
+    priority = models.CharField(max_length=20, choices=[('Low','low'), ('Medium','medium'), ('High','high')])
+    is_complete = models.CharField(max_length=20, choices=[('Yes','yes'),('No','no')])
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True, null=True, blank=True)
-    photo = models.ImageField(null=True, upload_to='images')
+    photo = models.ImageField(null=True, upload_to='images',blank=True)
 
-    def __str__(self):
-        return self.name
     
     class Meta:
         ordering = ['-updated_at','-created_at']

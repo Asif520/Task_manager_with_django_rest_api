@@ -86,7 +86,7 @@ def createTask(request):
              description = request.POST.get('description'),
              due_date = request.POST.get('due_date'),
              priority = request.POST.get('priority'),
-             is_complete = request.POST.get('is_complete'=='on')
+             is_complete = request.POST.get('is_complete')
         )
         return redirect('home')
             
@@ -101,16 +101,10 @@ def updaeTask(request,pk):
          return HttpResponse('You are not allowed to Update!!')
 
     if request.method == 'POST':
-        form = TaskForm(instance=task)
-        
-        Task.objects.update(
-            title = request.POST.get('title'),
-            description = request.POST.get('description'),
-            due_date = request.POST.get('due_date'),
-            priority = request.POST.get('priority'),
-            is_complete = request.POST.get('is_complete'=='on')
-        )
-
+        form = TaskForm(request.POST,instance=task)
+        if form.is_valid():
+            # Save the updated task
+            form.save()
         return redirect('home')
     
     context={'form': form,'task':task}

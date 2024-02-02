@@ -19,13 +19,19 @@
                 <div class="roomListRoom">
                     <div class="roomListRoom__header">
                       <div class="roomListRoom__actions">
-                        <span>created {{tasks.created_at|timesince}} ago</span>
+                        @{{tasks.user}} <span>created {{tasks.created_at|timesince}} ago</span>
                       </div>
                     </div>
                 </div>
 
                 <div class="roomListRoom__content">
                   <a href="{% url 'taskDetails' tasks.id %}">{{tasks.title}}</a>
+                {% if request.user.is_authenticated %}
+                  <div>
+                        <p>Priority : {{tasks.priority}}</p>
+                        <p>Completed : {{tasks.is_complete}}</p>
+                    </div>
+                    {% endif %}
                 </div>                
             </li>
             {% endfor %}

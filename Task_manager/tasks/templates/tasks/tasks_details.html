@@ -22,7 +22,6 @@
         <p>Priority : {{task.priority}}</p>
         <p>is completed = {{task.is_complete}}</p>
     </div>
-
     <div>
         <a href="{% url 'update_task' task.id %}">Update Task</a>
         <a href="{% url 'deleteTask' task.id %}">Delete Task</a>
