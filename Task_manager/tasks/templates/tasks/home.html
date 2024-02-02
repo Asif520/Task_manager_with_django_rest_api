@@ -15,25 +15,24 @@
     <div>
         <ul>
             {% for tasks in task %}
-            <li> 
                 <div class="roomListRoom">
                     <div class="roomListRoom__header">
                       <div class="roomListRoom__actions">
-                        @{{tasks.user}} <span>created {{tasks.created_at|timesince}} ago</span>
+                        <a href="{% url 'taskDetails' tasks.id %}">{{tasks.title}}</a>
+                        
                       </div>
                     </div>
                 </div>
 
                 <div class="roomListRoom__content">
-                  <a href="{% url 'taskDetails' tasks.id %}">{{tasks.title}}</a>
+                    @{{tasks.user}} <span>created {{tasks.created_at|timesince}} ago</span>
                 {% if request.user.is_authenticated %}
-                  <div>
-                        <p>Priority : {{tasks.priority}}</p>
-                        <p>Completed : {{tasks.is_complete}}</p>
+                  <div class="task_priority">
+                        <p class="left">Priority : {{tasks.priority}}</p>
+                        <p class="right">Completed : {{tasks.is_complete}}</p>
                     </div>
                     {% endif %}
                 </div>                
-            </li>
             {% endfor %}
         </ul>
     </div>
