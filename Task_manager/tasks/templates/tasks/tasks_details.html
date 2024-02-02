@@ -1,6 +1,6 @@
-{% include "navbar.html" %}
+{% extends "main.html" %}
 {% load static %}
-    {% block content %}
+{% block content %}
     <div>
         <h1>{{task.title}}</h1>
 
@@ -27,4 +27,4 @@
         <a href="{% url 'update_task' task.id %}">Update Task</a>
         <a href="{% url 'deleteTask' task.id %}">Delete Task</a>
     </div>
-    {% endblock content %}
+{% endblock content %}

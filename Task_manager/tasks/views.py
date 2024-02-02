@@ -56,7 +56,7 @@ def registerUser(request):
 def home(request):
     task = Task.objects.all()
     context = {'task':task}
-    return render(request, 'main.html' ,context)
+    return render(request, 'tasks/home.html' ,context)
 
 def taskList(request):
     q= request.GET.get('q') if request.GET.get('q') !=None else ''
@@ -64,7 +64,7 @@ def taskList(request):
     task = Task.objects.filter(Q(title__icontains=q))
 
     context = {'task':task}
-    return render(request, 'main.html' ,context)
+    return render(request, 'tasks/home.html' ,context)
 
 @login_required(login_url='login')
 def taskDetails(request,pk):

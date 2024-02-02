@@ -1,4 +1,8 @@
+{% extends "main.html" %}
 {% load static %}
+
+{% block content %}
+
 <section>
     <div>
         <a href="{% url 'createTask' %}">Create Task</a>
@@ -28,3 +32,5 @@
         </ul>
     </div>
 </section>
+
+{% endblock content %}
