@@ -13,7 +13,7 @@ To Run The Project follow guidelines below:
    
 Go to the localhost (127.0.0.1 in my case) cmd showing and enjoy .
 
-## If you open the folder with "VS Code", open a terminal, follow the instructions above. Just before the step v (v. python manage.py migrate) activate your environment using command (env/scripts/activate)
+# If you open the folder with "VS Code", open a terminal, follow the instructions above. Just before the step v (v. python manage.py migrate) activate your environment using command (env/scripts/activate)
 
 
 API'S
