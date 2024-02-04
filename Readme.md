@@ -1,20 +1,15 @@
 To Run The Project follow guidelines below:
 
 1. Download the project zip file , extract it.
-2. Using windows cmd install django (pip install django) under a new folder.
-3. Start a new projrct using cmd (django-admin startproject Task_manager)
-4. Now under the new project folder (Task_manager) using cmd install virtual environment (pip install virtualenv)
-5. Then create the environment folder (virtualenv env) using cmd.
-6. Now under the new project folder (Task_manager) using cmd start app (django-admin startapp tasks).
-7. Now Copy the static folder, templates folder as in the extracted folder.
-8. Copy all python files and other folders that are missing in yours as in the extracted folder into the tasks folder .
-9. Copy the settings.py and urls.py from Task_manager(app) folder.
-10. Run the commands serially:
-python manage.py makemigrations
-python manage.py migrate
-python manage.py runserver
-
-go to the localhost (127.0.0.1) and enjoy .
+2. Using windows cmd install django (pip install django).
+3. Go to first 'Task_manager' folder of extracted folder,open it, copy the path of 'Task_manager'.
+4. In the cmd type cd path(you copied) ("cd C:\Users\asifa\Desktop\Task_stack\Task_manager"  in my case) and run serially:
+   i.   pip install virtualenv
+   ii.  virtualenv env
+   iii. python manage.py migrate
+   iv.  python manage.py runserver
+   
+Go to the localhost (127.0.0.1) and enjoy .
 
 
 API'S
